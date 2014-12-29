@@ -4,7 +4,7 @@
   "description": "Config parsing library with a unified API for different types of configs.",
   "main": "lib/uniparse.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
