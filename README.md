@@ -38,6 +38,14 @@ Reads a file as a config and returns the object representation via the callback.
 
 The options parameter is optional.
 
+Options:
+
+- __data__ - _Boolean_
+By default `readConfig()` assumes that the first argument is a file path, if you are prividing a String or a Buffer object with the actual config data this option needs to be set to true. When using this option, make sure to also set the `extension` option.
+
+- __extension__ | __ext__ - _String_
+This option forces a certain extension to be used. When used uniparse will use the parser for this type of file.
+
 Example:
 
 ```javascript
@@ -48,7 +56,41 @@ ___uniparse_.writeConfig(file, object[, options], callback)__
 
 Writes a config to disk.
 
-## Coming soon
+Options:
 
-- Extending of configs
-- More file types
+- __extension__ | __ext__ - _String_
+This option forces a certain extension to be used. When used uniparse will use the parser for this type of file.
+
+- __extend__ - _Boolean_
+Will extend the config file with the object. This uses `lodash.extend(fileConfig, yourExtension)`. Extend will overwrite properties that are already defined in the original file.
+
+___uniparse_.stringifyConfig(object[, options], callback)__
+
+Stringifies a config object. Useful when sending the config file.
+
+Options:
+
+- __extension__ | __ext__ - _String_
+This option forces a certain extension to be used. When used uniparse will use the parser for this type of file.
+
+## Writing your own parser
+
+- Create a new file in the lib/parsers folder. Make sure to name it something meaningful.
+- Make sure to write the following 4 methods:
+	- readConfig(file, options, callback) // Options: none - 
+	Reads the config from a file.
+	- writeConfig(file, data, options, callback) // Options: extend - 
+	Writes the config to a file
+	- parseConfig(string, options, callback) // Options: none - 
+	Parses the config from a string.
+	- stringifyConfig(object, options, callback) // Options: none - 
+	Converts a plain JS object to a string.
+- The methods don't need to worry about undefined parameters, the main program handles those.
+- Make sure you pass on the options object to the parsing library, so the user can provide extra options for that too.
+- Export a property called `extensions` that includes all the extensions you support (without leading dot).
+- Make sure `gulp lint` doesn't throw errors.
+- Submit a PR.
+
+## Exceptions to GPLv2 license
+
+If the config format you're coding is only used in your company, you are not required to disclose the source.
