@@ -2,6 +2,11 @@
 
 Config parsing library with a unified API for different types of configs.
 
+Supported filetypes:
+- Yaml
+- Properties
+- JSON
+
 ## Usage
 
 Install the module:
@@ -40,10 +45,10 @@ The options parameter is optional.
 
 Options:
 
-- __data__ - _Boolean_
+- __data__ - _Boolean_ 
 By default `readConfig()` assumes that the first argument is a file path, if you are prividing a String or a Buffer object with the actual config data this option needs to be set to true. When using this option, make sure to also set the `extension` option.
 
-- __extension__ | __ext__ - _String_
+- __extension__ | __ext__ - _String_ 
 This option forces a certain extension to be used. When used uniparse will use the parser for this type of file.
 
 Example:
@@ -58,11 +63,14 @@ Writes a config to disk.
 
 Options:
 
-- __extension__ | __ext__ - _String_
+- __extension__ | __ext__ - _String_ 
 This option forces a certain extension to be used. When used uniparse will use the parser for this type of file.
 
-- __extend__ - _Boolean_
+- __extend__ - _Boolean_ 
 Will extend the config file with the object. This uses `lodash.extend(fileConfig, yourExtension)`. Extend will overwrite properties that are already defined in the original file.
+
+- __pretty__ - _Boolean_ 
+Returns a pretty version of the config (where applicable, like JSON). Will prettify by default.
 
 ___uniparse_.stringifyConfig(object[, options], callback)__
 
@@ -73,17 +81,20 @@ Options:
 - __extension__ | __ext__ - _String_
 This option forces a certain extension to be used. When used uniparse will use the parser for this type of file.
 
+- __pretty__ - _Boolean_ 
+Returns a pretty version of the config (where applicable, like JSON).
+
 ## Writing your own parser
 
 - Create a new file in the lib/parsers folder. Make sure to name it something meaningful.
 - Make sure to write the following 4 methods:
 	- readConfig(file, options, callback) // Options: none - 
 	Reads the config from a file.
-	- writeConfig(file, data, options, callback) // Options: extend - 
+	- writeConfig(file, data, options, callback) // Options: extend, pretty - 
 	Writes the config to a file
 	- parseConfig(string, options, callback) // Options: none - 
 	Parses the config from a string.
-	- stringifyConfig(object, options, callback) // Options: none - 
+	- stringifyConfig(object, options, callback) // Options: pretty - 
 	Converts a plain JS object to a string.
 - The methods don't need to worry about undefined parameters, the main program handles those.
 - Make sure you pass on the options object to the parsing library, so the user can provide extra options for that too.
