@@ -1,6 +1,6 @@
 {
   "name": "uniparse",
-  "version": "1.0.2-1",
+  "version": "1.0.3",
   "description": "Config parsing library with a unified API for different types of configs.",
   "main": "lib/uniparse.js",
   "scripts": {
