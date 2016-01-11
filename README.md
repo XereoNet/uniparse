@@ -104,4 +104,4 @@ Returns a pretty version of the config (where applicable, like JSON).
 
 ## Exceptions to GPLv2 license
 
-If the config format you're coding is only used in your company, you are not required to disclose the source.
+If the config format you're coding is proprietary, you are not required to disclose the source.
