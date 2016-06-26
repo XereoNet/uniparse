@@ -4,7 +4,7 @@
   "description": "Config parsing library with a unified API for different types of configs.",
   "main": "lib/uniparse.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "node ./node_modules/jshint/bin/jshint ./lib/*"
   },
   "repository": {
     "type": "git",
@@ -27,13 +27,11 @@
   "homepage": "https://github.com/XereoNet/uniparse",
   "dependencies": {
     "houston-properties": "^1.2.1",
-    "js-yaml": "^3.2.5",
-    "jshint": "^2.5.11",
+    "js-yaml": "^3.6.1",
     "json-honey": "^0.1.5",
     "lodash": "^2.4.1"
   },
   "devDependencies": {
-    "gulp": "^3.8.10",
-    "gulp-jshint": "^1.9.0"
+    "jshint": "^2.9.2",
   }
 }
